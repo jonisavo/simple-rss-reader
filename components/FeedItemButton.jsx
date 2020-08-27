@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
 import { getItemAuthors, getItemDate } from '../src/rss';
 
@@ -16,10 +16,12 @@ function FeedItemInfo(props) {
 
 export default function FeedItemButton(props) {
     return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{props.item.title}</Text>
-            <FeedItemInfo feed={props.feed} item={props.item}/>
-        </View>
+        <TouchableOpacity>
+            <View style={styles.container}>
+                <Text style={styles.title}>{props.item.title}</Text>
+                <FeedItemInfo feed={props.feed} item={props.item}/>
+            </View>
+        </TouchableOpacity>
     )
 }
 

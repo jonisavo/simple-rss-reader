@@ -1,5 +1,9 @@
 import * as rssParser from 'react-native-rss-parser';
 
+/**
+ * A class that holds all data parsed with react-native-rss-parser.
+ * Also contains some useful functions.
+ */
 class FeedWrapper {
     /**
      * @param {rssParser.Feed} feed 
