@@ -1,12 +1,12 @@
 import React from 'react';
 import { FlatList } from 'react-native';
-import ArticleButton from './ArticleButton';
+import FeedItemButton from './FeedItemButton';
 
 export default function FeedView(props) {
     if (!props.feed) return null;
 
     const renderFeed = ({ item }) => (
-        <ArticleButton feed={props.feed} article={item} />
+        <FeedItemButton feed={props.feed} item={item} />
     );
 
     return (

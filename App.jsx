@@ -13,6 +13,7 @@ import FeedHeader from './components/FeedHeader';
 
 export default function App() {
   const [feed, setFeed] = useState(null);
+
   let [fontsLoaded] = useFonts({
     'CourierPrime': require('./assets/fonts/CourierPrime-Regular.ttf'),
     'CourierPrime-Bold': require('./assets/fonts/CourierPrime-Bold.ttf'),
@@ -20,8 +21,8 @@ export default function App() {
   });
 
   if (!feed) {
-    getRSS('https://videos.lukesmith.xyz/feeds/videos.xml?accountId=3')
-    .then(rss => setFeed(rss))
+    getRSS('https://www.youtube.com/feeds/videos.xml?channel_id=UCWv7vMbMWH4-V0ZXdmDpPBA')
+    .then(rssFeed => setFeed(rssFeed))
     .catch(err => alert(err));
   }
 

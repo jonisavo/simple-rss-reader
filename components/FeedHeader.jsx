@@ -1,16 +1,23 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
-import { getFeedAuthors } from '../src/rss';
+function FeedInformation(props) {
+    let updatedDate = props.feed.getLastUpdatedDate();
+    return (
+        <>
+            {!!props.feed.description && <Text style={styles.description}>{props.feed.description}</Text>}
+            {props.feed.authorCount() > 0 && <Text style={styles.authors}>{props.feed.getAuthorNames()}</Text>}
+            {updatedDate && <Text style={styles.authors}>Last updated: {updatedDate}</Text>}
+        </>
+    )
+}
 
 export default function FeedHeader(props) {
     if (!props.feed) { return <Text style={styles.title}>Loading...</Text> }
     return (
         <View style={styles.container}>
             <Text style={styles.title}>{props.feed.title}</Text>
-            {!!props.feed.description && <Text style={styles.description}>{props.feed.description}</Text>}
-            {props.feed.authors.length > 0 && <Text style={styles.authors}>{getFeedAuthors(props.feed)}</Text>}
-            {props.feed.lastUpdated && <Text style={styles.authors}>Last updated: {props.feed.lastUpdated}</Text>}
+            <FeedInformation feed={props.feed}/>
         </View>
     )
 }
