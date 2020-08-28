@@ -13,7 +13,7 @@ class FeedWrapper {
         this.title = feed.title;
         this.description = feed.description;
         this.items = feed.items;
-        this.sortFeedItems();
+        this.sortItems();
     }
 
     /**
@@ -28,7 +28,7 @@ class FeedWrapper {
     /**
      * Sorts the feed items.
      */
-    sortFeedItems() {
+    sortItems() {
         this.feed.items.sort( (a,b) => this.getItemPriority(b) - this.getItemPriority(a))
     }
 
@@ -64,11 +64,12 @@ class FeedWrapper {
  * @param {string} url
  * @returns {Promise<FeedWrapper>} parsed feed
  */
-export function getRSS(url) {
-    return fetch(url)
+export async function getRSS(url) {
+    return await fetch(url)
         .then(response => response.text())
         .then(str => rssParser.parse(str))
         .then(parsedRSS => new FeedWrapper(parsedRSS))
+        .catch(error => alert(error))
 }
 
 /**
@@ -83,5 +84,6 @@ export function getItemAuthors(feed,item) {
 }
 
 export function getItemDate(item) {
+    if (typeof item.published != "string") { return null }
     return new Date(item?.published.trim()).toDateString();
 }

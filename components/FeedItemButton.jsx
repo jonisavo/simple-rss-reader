@@ -5,7 +5,7 @@ import { getItemAuthors, getItemDate } from '../src/rss';
 
 function FeedItemInfo(props) {
     let authors = getItemAuthors(props.feed,props.item);
-    let date = getItemDate(props.item);
+    let date = getItemDate(props.item) || 'Invalid Date';
     return (
         <>
             {authors.length > 0 && <Text style={styles.authors}>{getItemAuthors(props.feed,props.item)}</Text>}
@@ -16,7 +16,7 @@ function FeedItemInfo(props) {
 
 export default function FeedItemButton(props) {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={props.onPress.bind(this,props.item)}>
             <View style={styles.container}>
                 <Text style={styles.title}>{props.item.title}</Text>
                 <FeedItemInfo feed={props.feed} item={props.item}/>
@@ -31,18 +31,21 @@ const styles = StyleSheet.create({
         marginVertical: 10,
         marginHorizontal: 20,
         padding: 10,
-        backgroundColor: '#C44DFF',
+        backgroundColor: '#23002D',
+        borderStyle: 'solid',
+        borderColor: '#EEE',
+        borderWidth: 2,
         borderRadius: 8
     },
     title: {
         flex: 1,
-        fontSize: 15,
-        fontFamily: 'CourierPrime',
-        color: '#fff'
+        fontSize: 17,
+        fontFamily: 'SourceSansPro',
+        color: '#FFAA00'
     },
     authors: {
         flex: 1,
-        fontSize: 13,
+        fontSize: 14,
         fontFamily: 'CourierPrime',
         color: '#ccc'
     }

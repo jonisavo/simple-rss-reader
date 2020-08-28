@@ -1,50 +1,26 @@
-import React, { useState } from 'react';
-import { StyleSheet, SafeAreaView } from 'react-native';
+import React from 'react';
 
 import { StatusBar } from 'expo-status-bar';
 import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
-import Constants from 'expo-constants';
 
-import { getRSS } from './src/rss';
-
-import FeedView from './components/FeedView';
-import FeedHeader from './components/FeedHeader';
+import Navigator from './components/Navigator'
+import { ChannelProvider } from './components/ChannelContext';
 
 export default function App() {
-  const [feed, setFeed] = useState(null);
+    const [fontsLoaded] = useFonts({
+        'CourierPrime': require('./assets/fonts/CourierPrime-Regular.ttf'),
+        'CourierPrime-Bold': require('./assets/fonts/CourierPrime-Bold.ttf'),
+        'CourierPrime-Italic': require('./assets/fonts/CourierPrime-Italic.ttf'),
+        'SourceSansPro': require('./assets/fonts/SourceSansPro-Regular.ttf')
+    });
 
-  let [fontsLoaded] = useFonts({
-    'CourierPrime': require('./assets/fonts/CourierPrime-Regular.ttf'),
-    'CourierPrime-Bold': require('./assets/fonts/CourierPrime-Bold.ttf'),
-    'CourierPrime-Italic': require('./assets/fonts/CourierPrime-Italic.ttf')
-  });
+    if (!fontsLoaded) { return <AppLoading/> }
 
-  if (!feed) {
-    getRSS('https://www.youtube.com/feeds/videos.xml?channel_id=UCWv7vMbMWH4-V0ZXdmDpPBA')
-    .then(rssFeed => setFeed(rssFeed))
-    .catch(err => alert(err));
-  }
-
-  if (!fontsLoaded) { return <AppLoading/> }
-
-  return (
-    <>
-      <StatusBar style="light" />
-      <SafeAreaView style={styles.container}>
-        <FeedHeader feed={feed}/>
-        <FeedView feed={feed}/>
-      </SafeAreaView>
-    </>
-  );
+    return (
+        <ChannelProvider>
+            <StatusBar style="light" />
+            <Navigator/>
+        </ChannelProvider>
+    );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#000',
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: Constants.statusBarHeight + 4
-  }
-});
