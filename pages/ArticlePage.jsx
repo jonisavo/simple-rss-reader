@@ -41,7 +41,7 @@ export default function ArticlePage({navigation, route}) {
     return (
         <SafeAreaView style={styles.container}>
             <ScrollView style={{ flex: 1 }}>
-                {!!article.description && htmlElement}
+                {!!content && htmlElement}
                 <TouchableOpacity onPress={openLink} style={styles.linkButton}>
                     <Text>Open in browser</Text>
                 </TouchableOpacity>

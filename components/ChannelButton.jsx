@@ -14,7 +14,7 @@ export default function ChannelButton(props) {
                 setLastUpdated(getItemDate(feed.itemAt(0)));
             })
             .catch(error => alert(error))
-            .finally(setIsLoading(false))
+            .finally(() => setIsLoading(false))
     }, [props.url]);
 
     if (isLoading) {

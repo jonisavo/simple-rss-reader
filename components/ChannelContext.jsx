@@ -10,7 +10,7 @@ const ChannelProvider = (props) => {
 
     React.useEffect(() => {
         // Fetch all RSS URLs
-        fetch('https://static.jonisavo.xyz/rss.txt', { mode: 'no-cors'} )
+        fetch('https://static.jonisavo.xyz/rss.txt')
             .then(response => response.text())
             .then(str => str ? str.split('\n') : [])
             .then(lines => updateChannels(lines))

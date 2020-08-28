@@ -4,7 +4,7 @@ import { StatusBar } from 'expo-status-bar';
 import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
 
-import Navigator from './components/Navigator'
+import Navigator from './components/Navigator';
 import { ChannelProvider } from './components/ChannelContext';
 
 export default function App() {
