@@ -52,7 +52,7 @@ class FeedWrapper {
     /**
      * @returns {number}
      */
-    authorCount = () => this.feed.authors.length;
+    authorCount = () => this.feed.authors ? this.feed.authors.length : 0;
 
     /**
      * @returns {string}
@@ -89,7 +89,7 @@ export function getItemAuthors(feed,item) {
 
 /**
  * @param {rssParser.FeedItem} item
- * @returns {string}
+ * @returns {string | null}
  */
 export function getItemDate(item) {
     if (typeof item.published != "string") { return null }

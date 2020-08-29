@@ -10,7 +10,7 @@ export default function ChannelButton(props) {
     React.useEffect(() => {
         getRSS(props.url)
             .then(feed => {
-                setTitle(feed.title);
+                setTitle(feed.title || "[No Title]");
                 setLastUpdated(getItemDate(feed.itemAt(0)));
             })
             .catch(error => alert(error))

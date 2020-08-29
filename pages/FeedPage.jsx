@@ -39,10 +39,18 @@ export default function FeedPage({navigation, route}) {
         )
     }
 
+    if (!feed.items || feed.items.length == 0) {
+        return (
+            <SafeAreaView style={styles.container}>
+                <Text style={styles.loading}>No items found.</Text>
+            </SafeAreaView>
+        )
+    }
+
     return (
         <SafeAreaView style={styles.container}>
             <FlatList
-                data={feed.items}
+                data={feed.items || []}
                 renderItem={item => <FeedItemButton feed={feed} item={item.item} onPress={openArticle}/>}
                 keyExtractor={item => item.id}
             />

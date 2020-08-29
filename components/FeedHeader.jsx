@@ -16,7 +16,7 @@ function FeedInformation(props) {
 export default function FeedHeader(props) {
     return (
         <View style={styles.container}>
-            <Text style={styles.title}>{props.feed.title}</Text>
+            <Text style={styles.title}>{props.feed?.title || "[No Title]"}</Text>
             <FeedInformation feed={props.feed}/>
         </View>
     )
