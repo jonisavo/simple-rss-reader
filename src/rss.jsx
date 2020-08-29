@@ -42,6 +42,9 @@ class FeedWrapper {
         return parsedDate == NaN ? -1 : parsedDate;
     }
 
+    /**
+     * @returns {string}
+     */
     getAuthorNames() {
         return this.feed.authors.map(author => author.name).join(', ');
     }
@@ -74,7 +77,8 @@ export async function getRSS(url) {
 
 /**
  * @param {FeedWrapper} feed 
- * @param {rssParser.FeedItem} item 
+ * @param {rssParser.FeedItem} item
+ * @returns {string}
  */
 export function getItemAuthors(feed,item) {
     if (!item.authors || item.authors.length == 0)
@@ -83,6 +87,10 @@ export function getItemAuthors(feed,item) {
         return item.authors.map(author => author.name).join(', ')
 }
 
+/**
+ * @param {rssParser.FeedItem} item
+ * @returns {string}
+ */
 export function getItemDate(item) {
     if (typeof item.published != "string") { return null }
     return new Date(item?.published.trim()).toDateString();

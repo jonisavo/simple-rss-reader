@@ -18,6 +18,8 @@ export default function ArticlePage({navigation, route}) {
 
     const content = article.content ? article.content : article.description;
 
+    // Function that opens the link of the article in a web browser.
+    // TODO: This likely crashes if no link is defined.
     const openLink = async () => await WebBrowser.openBrowserAsync(article.links[0].url);
 
     const htmlElement = <HTML html={content}

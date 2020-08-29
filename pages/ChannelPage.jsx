@@ -7,10 +7,7 @@ import ChannelContext from '../components/ChannelContext';
 export default function ChannelPage({navigation}) {
     const {channels, isFetchingChannels} = React.useContext(ChannelContext);
 
-    const openChannel = (channelURL) => {
-        const urlToOpen = channels.find(url => url === channelURL)
-        navigation.navigate('FeedPage', { url: urlToOpen })
-    }
+    const openChannel = (channelURL) => navigation.navigate('FeedPage', { url: channelURL });
 
     if (isFetchingChannels) {
         return (
@@ -27,7 +24,7 @@ export default function ChannelPage({navigation}) {
                 renderItem={(item) => (
                     <ChannelButton url={channels[item.index]} onPress={openChannel}/>
                 )}
-                keyExtractor={ item => item }
+                keyExtractor={ (item,index) => item ? item : index.toString() }
             />
         </SafeAreaView>
     )
