@@ -2,13 +2,13 @@
   "expo": {
     "name": "rss-reader",
     "slug": "rss-reader",
-    "version": "1.0.0",
+    "version": "0.1.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -23,7 +23,9 @@
       "favicon": "./assets/favicon.png"
     },
     "android": {
-      "package": "app.rss.reader"
+      "package": "app.rss.reader",
+      "enableDangerousExperimentalLeanBuilds": true,
+      "permissions": []
     }
   }
 }
