@@ -19,7 +19,6 @@ export default function ArticlePage({navigation, route}) {
     const content = article.content ? article.content : article.description;
 
     const openLink = async () => await WebBrowser.openBrowserAsync(article.links[0].url);
-    const openHTML = () => alert(content);
 
     const htmlElement = <HTML html={content}
                             containerStyle={styles.htmlContainer}
@@ -44,9 +43,6 @@ export default function ArticlePage({navigation, route}) {
                 {!!content && htmlElement}
                 <TouchableOpacity onPress={openLink} style={styles.linkButton}>
                     <Text>Open in browser</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={openHTML} style={styles.linkButton}>
-                    <Text>Open HTML</Text>
                 </TouchableOpacity>
             </ScrollView>
         </SafeAreaView>
