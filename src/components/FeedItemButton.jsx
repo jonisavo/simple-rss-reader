@@ -1,7 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 
-import { getItemAuthors, getItemDate } from '../src/rss';
+import { getItemAuthors, getItemDate } from '../rss';
 
 function FeedItemInfo(props) {
     let authors = getItemAuthors(props.feed,props.item);

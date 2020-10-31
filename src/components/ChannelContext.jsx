@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { channels } from '../src/channels'
+import { channels } from '../channels'
 
 const ChannelContext = React.createContext();
 

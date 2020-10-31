@@ -3,7 +3,7 @@ import { StyleSheet, SafeAreaView, FlatList, Text } from 'react-native';
 
 import FeedItemButton from '../components/FeedItemButton';
 import FeedHeader from '../components/FeedHeader'
-import { getRSS } from '../src/rss';
+import { getRSS } from '../rss';
 
 export default function FeedPage({navigation, route}) {
     const [feed, setFeed] = React.useState(null);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { getRSS, getItemDate } from '../src/rss';
+import { getRSS, getItemDate } from '../rss';
 
 export default function ChannelButton(props) {
     const [isLoading, setIsLoading] = React.useState(true);

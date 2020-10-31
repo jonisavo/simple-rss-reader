@@ -4,8 +4,8 @@ import { StatusBar } from 'expo-status-bar';
 import { AppLoading } from 'expo';
 import { useFonts } from 'expo-font';
 
-import Navigator from './components/Navigator';
-import { ChannelProvider } from './components/ChannelContext';
+import Navigator from './src/components/Navigator';
+import { ChannelProvider } from './src/components/ChannelContext';
 
 export default function App() {
     const [fontsLoaded] = useFonts({
