@@ -72,7 +72,7 @@ export async function getRSS(url) {
         .then(response => response.text())
         .then(str => rssParser.parse(str))
         .then(parsedRSS => new FeedWrapper(parsedRSS))
-        .catch(error => alert(error))
+        .catch(error => alert(`Error while processing url ${url}: ${error}`))
 }
 
 /**

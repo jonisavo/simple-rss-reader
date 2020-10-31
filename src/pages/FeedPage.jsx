@@ -25,7 +25,7 @@ export default function FeedPage({navigation, route}) {
     React.useEffect(() => {
         getRSS(route.params.url)
             .then(feed => setFeed(feed))
-            .catch(error => alert(error))
+            .catch(error => alert(`Error while processing url ${route.params.url}: ${error}`))
             .finally(() => setIsLoading(false))
     }, [])
 

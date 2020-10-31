@@ -13,7 +13,7 @@ export default function ChannelButton(props) {
                 setTitle(feed.title || "[No Title]");
                 setLastUpdated(getItemDate(feed.itemAt(0)));
             })
-            .catch(error => alert(error))
+            .catch(error => alert(`Error while processing url ${props.url}: ${error}`))
             .finally(() => setIsLoading(false))
     }, [props.url]);
 
