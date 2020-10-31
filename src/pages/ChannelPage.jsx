@@ -3,6 +3,7 @@ import { Text, StyleSheet, SafeAreaView, FlatList } from 'react-native';
 
 import ChannelButton from '../components/ChannelButton';
 import ChannelContext from '../components/ChannelContext';
+import AddFeedMenu from '../components/add-feed-menu/AddFeedMenu';
 
 export default function ChannelPage({navigation}) {
     const {channels, isFetchingChannels} = React.useContext(ChannelContext);
@@ -26,6 +27,7 @@ export default function ChannelPage({navigation}) {
                 )}
                 keyExtractor={ (item,index) => item ? item : index.toString() }
             />
+            <AddFeedMenu/>
         </SafeAreaView>
     )
 }
