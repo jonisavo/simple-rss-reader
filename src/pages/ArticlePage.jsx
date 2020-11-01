@@ -18,13 +18,18 @@ export default function ArticlePage({navigation, route}) {
 
     const content = article.content ? article.content : article.description;
 
-    // Function that opens the link of the article in a web browser.
-    // TODO: This likely crashes if no link is defined.
-    const openLink = async () => await WebBrowser.openBrowserAsync(article.links[0].url);
+    const openLink = async (url) => await WebBrowser.openBrowserAsync(url);
+
+    const openArticleLink = async () => {
+        if (!!article.links[0]?.url) {
+            await openLink(article.links[0].url)
+        }
+    }
 
     const htmlElement = <HTML html={content}
                             containerStyle={styles.htmlContainer}
                             baseFontStyle={styles.htmlText} 
+                            onLinkPress={(event, href, htmlAttribs) => openLink(href)}
                             tagsStyles={{
                                 a: { color: '#FFAA00' },
                                 code: { fontFamily: 'CourierPrime' },
@@ -43,7 +48,7 @@ export default function ArticlePage({navigation, route}) {
         <SafeAreaView style={styles.container}>
             <ScrollView style={{ flex: 1 }}>
                 {!!content && htmlElement}
-                <TouchableOpacity onPress={openLink} style={styles.linkButton}>
+                <TouchableOpacity onPress={openArticleLink} style={styles.linkButton}>
                     <Text>Open in browser</Text>
                 </TouchableOpacity>
             </ScrollView>
