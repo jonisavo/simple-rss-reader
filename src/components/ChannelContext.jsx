@@ -21,12 +21,21 @@ const ChannelProvider = (props) => {
         setChannels(urls);
     }
 
+    const removeUrl = async (url) => {
+        const urls = JSON.parse(await getItem()) || [];
+        const index = urls.indexOf(url);
+        if (index < 0) return;
+        urls.splice(index, 1);
+        setItem(JSON.stringify(urls));
+        setChannels(urls);
+    }
+
     React.useEffect(() => {
         readUrlsFromStorage();
     }, []);
    
     return (
-        <ChannelContext.Provider value={{ channels, isFetchingChannels, saveUrl }}>
+        <ChannelContext.Provider value={{ channels, isFetchingChannels, saveUrl, removeUrl }}>
             {props.children}
         </ChannelContext.Provider>
     )
