@@ -22,7 +22,6 @@ export default function AddFeedURLModal(props) {
         }
         setAddingUrl(true);
         validateRSS(url).then(valid => {
-            console.log(`RSS validity test ran, result is ${valid}`)
             if (valid) {
                 saveUrl(url);
                 onPressClose();

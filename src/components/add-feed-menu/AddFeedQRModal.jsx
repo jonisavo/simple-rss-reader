@@ -29,7 +29,6 @@ export default function AddFeedQRModal(props) {
         }
         setAddingUrl(true);
         validateRSS(data).then(valid => {
-            console.log(`RSS validity test ran, result is ${valid}`)
             if (valid) {
                 saveUrl(data);
                 onPressClose();
