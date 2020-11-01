@@ -72,7 +72,18 @@ export async function getRSS(url) {
         .then(response => response.text())
         .then(str => rssParser.parse(str))
         .then(parsedRSS => new FeedWrapper(parsedRSS))
-        .catch(error => alert(`Error while processing url ${url}: ${error}`))
+        .catch(error => console.log(`Error while processing url ${url}: ${error}`))
+}
+
+/**
+ * Fetches an RSS feed and returns whether it is valid.
+ * @param {string} url
+ * @returns {Promise<boolean>}
+ */
+export async function validateRSS(url) {    
+    return await getRSS(url).then(feed => {
+        return feed ? !!feed.title : false
+    }).catch(error => false)
 }
 
 /**
