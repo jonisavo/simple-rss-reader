@@ -92,10 +92,11 @@ export async function validateRSS(url) {
  * @returns {string}
  */
 export function getItemAuthors(feed,item) {
-    if (!item.authors || item.authors.length == 0)
+    if (!item.authors || item.authors.length == 0) {
         return feed.getAuthorNames();
-    else
+    } else {
         return item.authors.map(author => author.name).join(', ')
+    }
 }
 
 /**

@@ -4,11 +4,11 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import { getItemAuthors, getItemDate } from '../rss';
 
 function FeedItemInfo(props) {
-    let authors = getItemAuthors(props.feed,props.item);
+    let authors = getItemAuthors(props.feed, props.item);
     let date = getItemDate(props.item) || 'Invalid Date';
     return (
         <>
-            {authors.length > 0 && <Text style={styles.authors}>{getItemAuthors(props.feed,props.item)}</Text>}
+            {authors.length > 0 && <Text style={styles.authors}>{getItemAuthors(props.feed, props.item)}</Text>}
             {date != 'Invalid Date' && <Text style={styles.authors}>{getItemDate(props.item)}</Text>}
         </>
     )
