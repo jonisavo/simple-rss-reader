@@ -20,13 +20,15 @@ export default function ChannelPage({navigation}) {
 
     return (
         <SafeAreaView style={styles.container}>
+            { channels.length > 0 ? 
             <FlatList
                 data={channels}
                 renderItem={(item) => (
                     <ChannelButton url={channels[item.index]} onPress={openChannel}/>
                 )}
                 keyExtractor={ (item,index) => item ? item : index.toString() }
-            />
+            /> : <Text style={styles.loading}>No feeds found.</Text>
+            }
             <AddFeedMenu/>
         </SafeAreaView>
     )
