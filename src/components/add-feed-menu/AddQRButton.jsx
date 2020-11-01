@@ -1,8 +1,13 @@
 import React from 'react';
 import { Text, Animated, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import AddFeedQRModal from './AddFeedQRModal';
 
 export default function AddQRButton(props) {
     const { animation, endY } = props;
+
+    const [modalVisible, setModalVisible] = React.useState(false);
+
+    const toggleModal = () => setModalVisible(!modalVisible);
 
     const animatedStyle = {
         transform: [
@@ -17,11 +22,14 @@ export default function AddQRButton(props) {
     }
 
     return (
-        <TouchableWithoutFeedback>
-            <Animated.View style={[styles.button, animatedStyle]}>
-                <Text style={styles.text}>QR</Text>
-            </Animated.View>
-        </TouchableWithoutFeedback>
+        <>
+            <TouchableWithoutFeedback onPress={toggleModal}>
+                <Animated.View style={[styles.button, animatedStyle]}>
+                    <Text style={styles.text}>QR</Text>
+                </Animated.View>
+            </TouchableWithoutFeedback>
+            <AddFeedQRModal visible={modalVisible} onPressClose={toggleModal}/>
+        </>
     )
 }
 
