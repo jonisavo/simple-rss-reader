@@ -1,7 +1,9 @@
 import React from 'react';
-import { Text, View, Animated, StyleSheet } from 'react-native';
+import { View, Animated, StyleSheet } from 'react-native';
+
 import ToggleMenuButton from './ToggleMenuButton';
-import AddMethodButton from './AddMethodButton';
+import AddURLButton from './AddURLButton';
+import AddQRButton from './AddQRButton';
 
 export default function AddFeedMenu() {
     const animation = React.useRef(new Animated.Value(0)).current;
@@ -18,13 +20,9 @@ export default function AddFeedMenu() {
 
     return (
         <View style={styles.container}>
-            <AddMethodButton animation={animation} endY={120}>
-                <Text style={styles.text}>QR</Text>
-            </AddMethodButton>
-            <AddMethodButton animation={animation} endY={60}>
-                <Text style={styles.text}>URL</Text>
-            </AddMethodButton>
-            <ToggleMenuButton onPress={toggleMenu} animation={animation} />
+            <AddQRButton animation={animation} endY={120}/>
+            <AddURLButton animation={animation} endY={60}/>
+            <ToggleMenuButton onPress={toggleMenu} animation={animation}/>
         </View>
     ) 
 }
@@ -36,9 +34,5 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         right: 40,
         bottom: 40
-    },
-    text: {
-        fontSize: 22,
-        color: '#23002D'
     }
 });

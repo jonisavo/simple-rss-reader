@@ -1,8 +1,8 @@
 import React from 'react';
-import { Animated, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { Text, Animated, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 
-export default function AddMethodButton(props) {
-    const { animation, endY, children, onPress } = props;
+export default function AddQRButton(props) {
+    const { animation, endY } = props;
 
     const animatedStyle = {
         transform: [
@@ -17,9 +17,9 @@ export default function AddMethodButton(props) {
     }
 
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <TouchableWithoutFeedback>
             <Animated.View style={[styles.button, animatedStyle]}>
-                { children }
+                <Text style={styles.text}>QR</Text>
             </Animated.View>
         </TouchableWithoutFeedback>
     )
@@ -38,5 +38,9 @@ const styles = StyleSheet.create({
         shadowOffset: { height: 10 },
         alignItems: 'center',
         justifyContent: 'center'
+    },
+    text: {
+        fontSize: 22,
+        color: '#23002D'
     }
 });
