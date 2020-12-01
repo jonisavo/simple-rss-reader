@@ -38,7 +38,7 @@ export default function ArticlePage({navigation, route}) {
                             }}
                             alterData={node => {
                                 let { parent, data } = node;
-                                if (parent && parent.name === "p") {
+                                if (parent && parent.name === 'p') {
                                     return data.split('\n').join(' ');
                                 }
                             }}

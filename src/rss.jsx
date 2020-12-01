@@ -104,6 +104,6 @@ export function getItemAuthors(feed,item) {
  * @returns {string | null}
  */
 export function getItemDate(item) {
-    if (typeof item.published != "string") { return null }
+    if (typeof item.published != 'string') { return null }
     return new Date(item?.published.trim()).toDateString();
 }

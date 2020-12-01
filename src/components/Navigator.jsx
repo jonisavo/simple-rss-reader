@@ -13,14 +13,14 @@ const Stack = createStackNavigator();
 export default function Navigator() {
     return (
         <NavigationContainer>
-            <Stack.Navigator initialRouteName="ChannelPage" screenOptions={{
+            <Stack.Navigator initialRouteName='ChannelPage' screenOptions={{
                 headerStyle: { backgroundColor: '#000' },
                 headerTintColor: '#fff',
                 headerTitleStyle: { fontFamily: 'CourierPrime-Bold' }
             }}>
-                <Stack.Screen name="ChannelPage" component={ChannelPage} options={{ header: () => <ChannelHeader/> }}/>
-                <Stack.Screen name="FeedPage" component={FeedPage}/>
-                <Stack.Screen name="ArticlePage" component={ArticlePage}/>
+                <Stack.Screen name='ChannelPage' component={ChannelPage} options={{ header: () => <ChannelHeader/> }}/>
+                <Stack.Screen name='FeedPage' component={FeedPage}/>
+                <Stack.Screen name='ArticlePage' component={ArticlePage}/>
             </Stack.Navigator>
         </NavigationContainer>
     )

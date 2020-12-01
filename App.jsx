@@ -19,7 +19,7 @@ export default function App() {
 
     return (
         <ChannelProvider>
-            <StatusBar style="light" />
+            <StatusBar style='light' />
             <Navigator/>
         </ChannelProvider>
     );

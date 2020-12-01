@@ -9,7 +9,7 @@ export default function ToggleMenuButton(props) {
             {
                 rotate: animation.interpolate({
                     inputRange: [0, 1],
-                    outputRange: ["0deg", "45deg"]
+                    outputRange: ['0deg', '45deg']
                 })
             }
         ]
