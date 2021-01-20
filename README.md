@@ -8,3 +8,4 @@ I created the initial version of this application in three days for a quick Reac
 - OPML support.
 - Eject into a bare workflow. While Expo's managed workflow is convenient, I want to challenge myself and have more control over my application. (Also, it's probably the best way to decrease the app size.)
 - Make it prettier. It looks fine right now, but could be much better.
+- Switch to TypeScript.
