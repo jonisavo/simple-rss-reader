@@ -26,7 +26,7 @@ export default function ArticlePage({navigation, route}) {
         }
     }
 
-    const htmlElement = <HTML html={content}
+    const htmlElement = <HTML source={{ html: content }}
                             containerStyle={styles.htmlContainer}
                             baseFontStyle={styles.htmlText} 
                             onLinkPress={(event, href, htmlAttribs) => openLink(href)}
