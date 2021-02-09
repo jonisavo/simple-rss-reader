@@ -11,10 +11,10 @@ import {
 } from 'react-native';
 
 import ChannelContext from '../ChannelContext';
-import type { Props } from './ModalTypes';
+import type { ModalProps } from './AddFeedMenuTypes';
 import { validateRSS } from '../../rss';
 
-export default function AddFeedURLModal(props: Props): JSX.Element {
+export default function AddFeedURLModal(props: ModalProps): JSX.Element {
   const { visible, onPressClose } = props;
 
   const [url, setUrl] = React.useState('');

@@ -12,10 +12,10 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 import * as Permissions from 'expo-permissions';
 
 import ChannelContext from '../ChannelContext';
-import type { Props } from './ModalTypes';
+import type { ModalProps } from './AddFeedMenuTypes';
 import { validateRSS } from '../../rss';
 
-export default function AddFeedQRModal(props: Props): JSX.Element {
+export default function AddFeedQRModal(props: ModalProps): JSX.Element {
   const { visible, onPressClose } = props;
 
   const [permission, askForPermission] = Permissions.usePermissions(
