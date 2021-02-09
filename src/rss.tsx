@@ -73,14 +73,13 @@ class FeedWrapper {
 /**
  * Fetches an RSS feed from the given URL and returns a FeedWrapper wrapped in a Promise.
  * @param {string} url
- * @returns {Promise<FeedWrapper | void>} parsed feed
+ * @returns {Promise<FeedWrapper>} parsed feed
  */
-export async function getRSS(url: string): Promise<FeedWrapper | void> {
+export async function getRSS(url: string): Promise<FeedWrapper> {
   return fetch(url)
     .then(response => response.text())
     .then(str => rssParser.parse(str))
-    .then(parsedRSS => new FeedWrapper(parsedRSS))
-    .catch(error => console.log(`Error while processing url ${url}: ${error}`));
+    .then(parsedRSS => new FeedWrapper(parsedRSS));
 }
 
 /**
