@@ -1,10 +1,10 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, GestureResponderEvent } from 'react-native';
 import { getRSS, getItemDate } from '../rss';
 
 type Props = {
   url: string;
-  onPress: Function;
+  onPress: (event: GestureResponderEvent) => void;
 }
 
 export default function ChannelButton(props: Props): JSX.Element {
@@ -15,13 +15,13 @@ export default function ChannelButton(props: Props): JSX.Element {
   const { url, onPress } = props;
 
   React.useEffect(() => {
-    getRSS(props.url)
+    getRSS(url)
       .then(feed => {
         setTitle(feed.title || '[No Title]');
         setLastUpdated(getItemDate(feed.itemAt(0)));
       })
       .catch(error =>
-        console.log(`Error while processing url ${props.url}: ${error}`),
+        console.log(`Error while processing url ${url}: ${error}`),
       )
       .finally(() => setIsLoading(false));
   }, [url]);
@@ -37,7 +37,7 @@ export default function ChannelButton(props: Props): JSX.Element {
   }
 
   return (
-    <TouchableOpacity onPress={onPress.bind(this, props.url)}>
+    <TouchableOpacity onPress={onPress.bind(this, url)}>
       <View style={styles.container}>
         <Text style={styles.title}>{title}</Text>
         {!!lastUpdated && (
