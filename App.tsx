@@ -21,7 +21,7 @@ export default function App(): JSX.Element {
 
   return (
     <ChannelProvider>
-      <StatusBar style="auto" />
+      <StatusBar style="light" />
       <Navigator />
     </ChannelProvider>
   );
