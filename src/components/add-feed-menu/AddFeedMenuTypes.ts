@@ -1,8 +1,8 @@
-import { Animated } from 'react-native';
+import { GestureResponderEvent, Animated } from 'react-native';
 
 export type ModalProps = {
   visible: boolean;
-  onPressClose: Function;
+  onPressClose: (event?: GestureResponderEvent) => void;
 };
 
 export type ButtonProps = {

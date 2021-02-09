@@ -1,22 +1,22 @@
-import * as rssParser from 'react-native-rss-parser';
+import { Feed, FeedItem, parse } from 'react-native-rss-parser';
 
 /**
  * A class that holds all data parsed with react-native-rss-parser.
  * Also contains some useful functions.
  */
 class FeedWrapper {
-  feed: rssParser.Feed;
+  feed: Feed;
 
   title: string;
 
   description: string;
 
-  items: Array<rssParser.FeedItem>;
+  items: Array<FeedItem>;
 
   /**
-   * @param {rssParser.Feed} feed
+   * @param {Feed} feed
    */
-  constructor(feed: rssParser.Feed) {
+  constructor(feed: Feed) {
     this.feed = feed;
     this.title = feed.title;
     this.description = feed.description;
@@ -27,17 +27,17 @@ class FeedWrapper {
   /**
    * Returns the feed item in the given index.
    * @param {number} index
-   * @returns {rssParser.FeedItem}
+   * @returns {FeedItem}
    */
-  itemAt(index: number): rssParser.FeedItem {
+  itemAt(index: number): FeedItem {
     return this.feed.items[index];
   }
 
   /**
    * Sorts the feed items.
    */
-  sortItems() {
-    const itemPriority = (item: rssParser.FeedItem): number => {
+  sortItems(): void {
+    const itemPriority = (item: FeedItem): number => {
       const parsedDate: number = Date.parse(item.published);
       return Number.isNaN(parsedDate) ? -1 : parsedDate;
     };
@@ -80,7 +80,7 @@ export type { FeedWrapper };
 export async function getRSS(url: string): Promise<FeedWrapper> {
   return fetch(url)
     .then(response => response.text())
-    .then(str => rssParser.parse(str))
+    .then(str => parse(str))
     .then(parsedRSS => new FeedWrapper(parsedRSS));
 }
 
@@ -99,10 +99,10 @@ export async function validateRSS(url: string): Promise<boolean> {
 
 /**
  * @param {FeedWrapper} feed
- * @param {rssParser.FeedItem} item
+ * @param {FeedItem} item
  * @returns {string}
  */
-export function getItemAuthors(feed: FeedWrapper, item: rssParser.FeedItem): string {
+export function getItemAuthors(feed: FeedWrapper, item: FeedItem): string {
   if (!item.authors || item.authors.length === 0) {
     return feed.getAuthorNames();
   }
@@ -110,10 +110,10 @@ export function getItemAuthors(feed: FeedWrapper, item: rssParser.FeedItem): str
 }
 
 /**
- * @param {rssParser.FeedItem} item
+ * @param {FeedItem} item
  * @returns {string | null}
  */
-export function getItemDate(item: rssParser.FeedItem): string | null {
+export function getItemDate(item: FeedItem): string | null {
   if (typeof item.published !== 'string') {
     return null;
   }

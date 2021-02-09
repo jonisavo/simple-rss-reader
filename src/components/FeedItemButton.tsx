@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TouchableOpacity, GestureResponderEvent } from 'react-native';
 
 import type { FeedItem } from 'react-native-rss-parser';
 import { getItemAuthors, getItemDate } from '../rss';
@@ -11,7 +11,7 @@ type InfoProps = {
 };
 
 type ButtonProps = InfoProps & {
-  onPress: Function;
+  onPress: (event: GestureResponderEvent) => void;
 };
 
 function FeedItemInfo(props: InfoProps): JSX.Element {
