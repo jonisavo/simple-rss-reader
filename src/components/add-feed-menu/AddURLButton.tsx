@@ -5,10 +5,11 @@ import {
   TouchableWithoutFeedback,
   StyleSheet,
 } from 'react-native';
-import AddFeedQRModal from './AddFeedQRModal';
+
+import AddFeedURLModal from './AddFeedURLModal';
 import type { ButtonProps } from './AddFeedMenuTypes';
 
-export default function AddQRButton(props: ButtonProps): JSX.Element {
+export default function AddURLButton(props: ButtonProps): JSX.Element {
   const { animation, endY } = props;
 
   const [modalVisible, setModalVisible] = React.useState(false);
@@ -31,10 +32,10 @@ export default function AddQRButton(props: ButtonProps): JSX.Element {
     <>
       <TouchableWithoutFeedback onPress={toggleModal}>
         <Animated.View style={[styles.button, animatedStyle]}>
-          <Text style={styles.text}>QR</Text>
+          <Text style={styles.text}>URL</Text>
         </Animated.View>
       </TouchableWithoutFeedback>
-      <AddFeedQRModal visible={modalVisible} onPressClose={toggleModal} />
+      <AddFeedURLModal visible={modalVisible} onPressClose={toggleModal} />
     </>
   );
 }
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
     shadowColor: '#FFAA00',
     shadowOpacity: 0.3,
-    shadowOffset: { height: 10 },
+    shadowOffset: { width: 0, height: 10 },
     alignItems: 'center',
     justifyContent: 'center',
   },
