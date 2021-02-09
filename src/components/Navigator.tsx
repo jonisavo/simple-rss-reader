@@ -2,15 +2,20 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import type { FeedItem } from 'react-native-rss-parser';
 
 import ChannelPage from '../pages/ChannelPage';
 import ChannelHeader from './ChannelHeader';
 import FeedPage from '../pages/FeedPage'
 import ArticlePage from '../pages/ArticlePage';
 
-const Stack = createStackNavigator();
+type StackParams = {
+  article: FeedItem;
+};
 
-export default function Navigator() {
+const Stack = createStackNavigator<StackParams>();
+
+export default function Navigator(): JSX.Element {
     return (
         <NavigationContainer>
             <Stack.Navigator initialRouteName='ChannelPage' screenOptions={{
