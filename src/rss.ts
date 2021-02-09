@@ -70,6 +70,8 @@ class FeedWrapper {
   }
 }
 
+export type { FeedWrapper };
+
 /**
  * Fetches an RSS feed from the given URL and returns a FeedWrapper wrapped in a Promise.
  * @param {string} url
