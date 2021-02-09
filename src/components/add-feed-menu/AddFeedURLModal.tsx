@@ -3,46 +3,38 @@ import {
   Text,
   StyleSheet,
   Modal,
+  TextInput,
   View,
   KeyboardAvoidingView,
   TouchableHighlight,
   Dimensions,
 } from 'react-native';
-import { BarCodeScanner } from 'expo-barcode-scanner';
-import * as Permissions from 'expo-permissions';
 
 import ChannelContext from '../ChannelContext';
 import type { Props } from './ModalTypes';
 import { validateRSS } from '../../rss';
 
-export default function AddFeedQRModal(props: Props): JSX.Element {
+export default function AddFeedURLModal(props: Props): JSX.Element {
   const { visible, onPressClose } = props;
 
-  const [permission, askForPermission] = Permissions.usePermissions(
-    Permissions.CAMERA,
-  );
-  const [openedQR, setOpenedQR] = React.useState(false);
+  const [url, setUrl] = React.useState('');
   const [addingUrl, setAddingUrl] = React.useState(false);
   const { channels, saveUrl } = React.useContext(ChannelContext);
 
-  const startQRScan = async () => {
-    if (!permission || !permission.granted) {
-      await askForPermission();
-    }
-    setOpenedQR(permission && permission.granted);
-  };
-
-  const codeScanned = ({ data }) => {
-    setOpenedQR(false);
-    if (channels.includes(data)) {
+  const saveNewUrl = () => {
+    if (channels.includes(url)) {
       alert('You already have this feed saved.');
       return;
     }
+    if (url.length === 0) {
+      alert('Enter an URL!');
+      return;
+    }
     setAddingUrl(true);
-    validateRSS(data)
+    validateRSS(url)
       .then(valid => {
         if (valid) {
-          saveUrl(data);
+          saveUrl(url);
           onPressClose();
         } else {
           alert('The given feed is not valid.');
@@ -51,24 +43,25 @@ export default function AddFeedQRModal(props: Props): JSX.Element {
       .finally(() => setAddingUrl(false));
   };
 
-  const closeModal = () => {
-    setOpenedQR(false);
-    onPressClose();
-  };
-
   return (
     <Modal animationType="fade" visible={visible} transparent>
       <View style={styles.centered}>
         <KeyboardAvoidingView style={styles.container}>
           {!addingUrl ? (
             <>
-              <Text style={styles.text}>Scan a QR code:</Text>
-              {openedQR || (
-                <TouchableHighlight style={styles.button} onPress={startQRScan}>
-                  <Text>Start scan</Text>
-                </TouchableHighlight>
-              )}
-              <TouchableHighlight onPress={closeModal} style={styles.button}>
+              <Text style={styles.text}>Add new feed:</Text>
+              <TextInput
+                placeholder="Enter URL here"
+                onChangeText={text => setUrl(text)}
+                style={styles.textInput}
+                placeholderTextColor="#555"
+                returnKeyType="done"
+                onSubmitEditing={saveNewUrl}
+              />
+              <TouchableHighlight style={styles.button} onPress={saveNewUrl}>
+                <Text>Save</Text>
+              </TouchableHighlight>
+              <TouchableHighlight onPress={onPressClose} style={styles.button}>
                 <Text>Cancel</Text>
               </TouchableHighlight>
             </>
@@ -77,15 +70,6 @@ export default function AddFeedQRModal(props: Props): JSX.Element {
           )}
         </KeyboardAvoidingView>
       </View>
-      {openedQR && (
-        <View style={styles.scannerContainer}>
-          <BarCodeScanner
-            onBarCodeScanned={codeScanned}
-            style={StyleSheet.absoluteFillObject}
-            barCodeTypes={[BarCodeScanner.Constants.BarCodeType.qr]}
-          />
-        </View>
-      )}
     </Modal>
   );
 }
@@ -122,16 +106,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginBottom: 5,
   },
-  scannerContainer: {
-    flex: 1,
-    flexDirection: 'column',
-    backgroundColor: '#23002D',
-    justifyContent: 'flex-end',
+  textInput: {
     borderStyle: 'solid',
     borderColor: '#EEE',
     borderWidth: 2,
-    borderRadius: 5,
-    marginBottom: 30,
-    marginHorizontal: 15,
+    borderRadius: 10,
+    padding: 8,
+    margin: 5,
+    fontSize: 18,
+    color: '#EEE',
   },
 });
