@@ -1,20 +1,11 @@
 import React from 'react';
 import { Text, StyleSheet, SafeAreaView, Dimensions } from 'react-native';
-import type { ParamListBase } from '@react-navigation/native';
-import {
-  StackScreenProps,
-  StackNavigationOptions,
-} from '@react-navigation/stack';
 import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import * as WebBrowser from 'expo-web-browser';
-
 import HTML from 'react-native-render-html';
+import * as WebBrowser from 'expo-web-browser';
+import type { Props } from './NavigationTypes';
 
 import ArticleHeader from '../components/ArticleHeader';
-
-type Props = StackScreenProps<ParamListBase> & {
-  options?: StackNavigationOptions;
-};
 
 export default function ArticlePage({ navigation, route }: Props): JSX.Element {
   const { article } = route.params;
